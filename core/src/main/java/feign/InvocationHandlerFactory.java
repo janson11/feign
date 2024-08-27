@@ -19,6 +19,7 @@ import java.util.Map;
 
 /**
  * Controls reflective method dispatch.
+ * 用于控制反射方法的分发。
  */
 public interface InvocationHandlerFactory {
 

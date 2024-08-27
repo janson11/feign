@@ -25,6 +25,7 @@ import feign.Util;
  * {@link Response#status()} is in the 2xx range and the return type is neither {@code void} nor
  * {@code
  * Response}.
+ * 解析HTTP响应并将其转换为给定类型的单个对象。在{@link Response#status()}处于2xx范围内，返回类型既不是void也不是{@code Response}时调用。
  * <p/>
  * <p/>
  * Example Implementation:<br>
@@ -78,6 +79,7 @@ public interface Decoder {
   Object decode(Response response, Type type) throws IOException, DecodeException, FeignException;
 
   /** Default implementation of {@code Decoder}. */
+  // 默认实现
   public class Default extends StringDecoder {
 
     @Override

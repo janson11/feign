@@ -37,6 +37,7 @@ import static feign.Util.valuesOrEmpty;
 
 /**
  * Builds a request to an http target. Not thread safe. <br>
+ * 构建一个请求到一个http目标类。不是线程安全的。<br>
  * <br>
  * <br>
  * <b>relationship to JAXRS 2.0</b><br>
@@ -48,12 +49,19 @@ import static feign.Util.valuesOrEmpty;
 public final class RequestTemplate implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  /**
+   * 查询参数的格式
+   */
   private final Map<String, Collection<String>> queries =
       new LinkedHashMap<String, Collection<String>>();
+  /**
+   * 请求头参数的格式
+   */
   private final Map<String, Collection<String>> headers =
       new LinkedHashMap<String, Collection<String>>();
   private String method;
   /* final to encourage mutable use vs replacing the object. */
+
   private StringBuilder url = new StringBuilder();
   private transient Charset charset;
   private byte[] body;

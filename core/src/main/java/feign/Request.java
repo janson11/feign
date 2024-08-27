@@ -22,6 +22,7 @@ import static feign.Util.valuesOrEmpty;
 
 /**
  * An immutable request to an http server.
+ * 一个不可变的http请求。
  */
 public final class Request {
 
@@ -104,6 +105,7 @@ public final class Request {
   /*
    * Controls the per-request settings currently required to be implemented by all {@link Client
    * clients}
+   * 控制当前所有{@link Client clients}都需要实现的每个请求设置。
    */
   public static class Options {
 

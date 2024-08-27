@@ -20,6 +20,7 @@ import static feign.Util.emptyToNull;
  * <br>
  * <br>
  * <b>relationship to JAXRS 2.0</b><br>
+ * 目标接口类 关联到JAXRS 2.0
  * <br>
  * Similar to {@code
  * javax.ws.rs.client.WebTarget}, as it produces requests. However, {@link RequestTemplate} is a
@@ -56,6 +57,7 @@ public interface Target<T> {
    * <br>
    * <br>
    * <b>relationship to JAXRS 2.0</b><br>
+   *  将RestTemplate的对象转换为Request对象
    * <br>
    * This call is similar to {@code
    * javax.ws.rs.client.WebTarget.request()}, except that we expect transient, but necessary
@@ -63,6 +65,11 @@ public interface Target<T> {
    */
   public Request apply(RequestTemplate input);
 
+  /**
+   * A target that is hard-coded to a specific URL. <br>
+   * 硬编码目标类
+   * @param <T>
+   */
   public static class HardCodedTarget<T> implements Target<T> {
 
     private final Class<T> type;
@@ -95,6 +102,9 @@ public interface Target<T> {
     }
 
     /* no authentication or other special activity. just insert the url. */
+    // 没有认证或其他特殊活动，将请求的url插入到请求模板中
+    // 这段代码的主要功能是处理 RequestTemplate 对象，确保其 URL 是绝对路径（以 "http" 开头）。
+    // 如果输入的 RequestTemplate 中的 URL 不是以 "http" 开头，则将其替换为当前对象的 URL。最终，返回处理后的 Request 对
     @Override
     public Request apply(RequestTemplate input) {
       if (input.url().indexOf("http") != 0) {
