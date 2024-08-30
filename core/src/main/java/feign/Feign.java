@@ -88,6 +88,8 @@ public abstract class Feign {
   /**
    * Returns a new instance of an HTTP API, defined by annotations in the {@link Feign Contract},
    * for the specified {@code target}. You should cache this result.
+   * 返回一个新的实例，该实例由指定的 {@code target} 定义，并由 {@link Feign Contract} 中的注解定义。
+   * 你应该缓存这个结果。
    */
   public abstract <T> T newInstance(Target<T> target);
 

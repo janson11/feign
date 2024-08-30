@@ -29,11 +29,13 @@ import static feign.Util.emptyToNull;
 
 /**
  * Defines what annotations and values are valid on interfaces.
+ * 定义接口中有效的注解和值。
  */
 public interface Contract {
 
   /**
    * Called to parse the methods in the class that are linked to HTTP requests.
+   * 传入接口定义,解析成相应的方法内部元数据表示
    *
    * @param targetType {@link feign.Target#type() type} of the Feign interface.
    */

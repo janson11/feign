@@ -51,6 +51,8 @@ public interface RequestInterceptor {
 
   /**
    * Called for every request. Add data using methods on the supplied {@link RequestTemplate}.
+   * 可以在构造RequestTemplate 请求时，增加或者修改Header, Method, Body 等信息
+   * 被每个请求调用一次，可以添加或者修改RequestTemplate中的Header, Method, Body等信息
    */
   void apply(RequestTemplate template);
 }

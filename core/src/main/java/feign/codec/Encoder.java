@@ -69,6 +69,7 @@ public interface Encoder {
 
   /**
    * Converts objects to an appropriate representation in the template.
+   * 将实体对象转换成模板中适当的表示形式。[Http请求的消息正文中]
    *
    * @param object what to encode as the request body.
    * @param bodyType the type the object should be encoded as. {@link #MAP_STRING_WILDCARD}

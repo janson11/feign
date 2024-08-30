@@ -44,10 +44,12 @@ public class ReflectiveFeign extends Feign {
   /**
    * creates an api binding to the {@code target}. As this invokes reflection, care should be taken
    * to cache the result.
+   * 创建与 {@code target} 绑定的 api。由于使用了反射，因此应当注意缓存结果。
    */
   @SuppressWarnings("unchecked")
   @Override
   public <T> T newInstance(Target<T> target) {
+    //根据接口类和Contract协议解析方式，解析接口类上的方法和注解，转换成内部的MethodHandler处理方式
     Map<String, MethodHandler> nameToHandler = targetToHandlersByName.apply(target);
     Map<Method, MethodHandler> methodToHandler = new LinkedHashMap<Method, MethodHandler>();
     List<DefaultMethodHandler> defaultMethodHandlers = new LinkedList<DefaultMethodHandler>();
@@ -64,6 +66,7 @@ public class ReflectiveFeign extends Feign {
       }
     }
     InvocationHandler handler = factory.create(target, methodToHandler);
+    // 基于Proxy.newProxyInstance 为接口类创建动态实现，将所有的请求转换给InvocationHandler 处理。
     T proxy = (T) Proxy.newProxyInstance(target.type().getClassLoader(),
         new Class<?>[] {target.type()}, handler);
 
