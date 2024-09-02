@@ -30,8 +30,18 @@ public interface Retryer extends Cloneable {
 
   public static class Default implements Retryer {
 
+    /**
+     * 最大重试次数  默认5 次
+     */
     private final int maxAttempts;
+    /**
+     * 初始重试时间间隔，当请求失败后，重试器将会暂停 初始时间间隔(线程 sleep 的方式)后再开始，避免强刷请求，浪费性能 默认100毫秒
+     */
     private final long period;
+    /**
+     * 当请求连续失败时，重试的时间间隔将按照：long interval = (long) (period * Math.pow(1.5, attempt - 1));
+     * 计算，按照等比例方式延长，但是最大间隔时间为 maxPeriod, 设置此值能够避免 重试次数过多的情况下执行周期太长 默认 1000ms
+     */
     private final long maxPeriod;
     int attempt;
     long sleptForMillis;

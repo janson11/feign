@@ -68,8 +68,11 @@ final class SynchronousMethodHandler implements MethodHandler {
 
   @Override
   public Object invoke(Object[] argv) throws Throwable {
+    //根据输入参数，构造Http 请求。
     RequestTemplate template = buildTemplateFromArgs.create(argv);
+    // 克隆出一份重试器
     Retryer retryer = this.retryer.clone();
+    // 尝试最大次数，如果中间有结果，直接返回
     while (true) {
       try {
         return executeAndDecode(template);

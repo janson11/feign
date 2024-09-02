@@ -41,7 +41,7 @@ public interface Client {
 
   /**
    * Executes a request against its {@link Request#url() url} and returns a response.
-   *
+   * 执行Http请求并返回响应。
    * @param request safe to replay.
    * @param options options to apply to this request.
    * @return connected response, {@link Response.Body} is absent or unread.
